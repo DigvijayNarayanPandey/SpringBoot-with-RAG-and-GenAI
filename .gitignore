@@ -1,6 +1,5 @@
 
-# The real application.properties may contain API keys, OAuth secrets, etc.
-backend/src/main/resources/application.properties
+# The real application.properties uses safe environment variables
 .env
 .env.*
 .env.local
