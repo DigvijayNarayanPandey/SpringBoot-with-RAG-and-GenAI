@@ -70,12 +70,10 @@ export class ApiError extends Error {
 }
 
 export function getApiBaseUrl() {
-  return (
-    process.env.NEXT_PUBLIC_API_BASE_URL ||
-    process.env.NEXT_PUBLIC_API_URL ||
-    process.env.NEXT_API_URL ||
-    "http://localhost:8080"
-  );
+  if (typeof window !== "undefined" && process.env.NODE_ENV === "production") {
+    return ""; // relative URLs → proxied by Next.js rewrites
+  }
+  return process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
 }
 
 export function getGithubLoginUrl() {
